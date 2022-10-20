@@ -20,7 +20,7 @@ public class EpisodioController {
     }
 
     @GetMapping("/{id}")
-    public Episodio getById( long id){
+    public Episodio getById(@PathVariable Long id){
         return episodioRepositorio.findById(id).get();
     }
 
@@ -30,14 +30,14 @@ public class EpisodioController {
     }
 
     @PutMapping("/{id}")
-    public void putEpisodio(@RequestBody Episodio episodio, long id){
+    public void putEpisodio(@RequestBody Episodio episodio, @PathVariable Long id){
 
         episodio.setId(id);
         episodioRepositorio.save(episodio);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEpisodio(long id){
+    public void deleteEpisodio(@PathVariable Long id){
         episodioRepositorio.deleteById(id);
     }
 }

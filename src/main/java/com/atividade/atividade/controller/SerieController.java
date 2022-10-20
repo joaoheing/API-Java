@@ -19,7 +19,7 @@ public class SerieController {
     }
 
     @GetMapping("/{id}")
-    public Serie getById( long id){
+    public Serie getById( @PathVariable Long id){
         return serieRepositorio.findById(id).get();
     }
 
@@ -29,13 +29,13 @@ public class SerieController {
     }
 
     @PutMapping("/{id}")
-    public void putSerie(@RequestBody Serie serie, long id){
+    public void putSerie(@RequestBody Serie serie, @PathVariable Long id){
         serie.setId(id);
         serieRepositorio.save(serie);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteSerie(long id){
+    public void deleteSerie(@PathVariable Long id){
         serieRepositorio.deleteById(id);
     }
 }

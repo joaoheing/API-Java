@@ -20,7 +20,7 @@ public class TemporadaController {
     }
 
     @GetMapping("/{id}")
-    public Temporada getById( long id){
+    public Temporada getById( @PathVariable Long id){
         return temporadaRepositorio.findById(id).get();
     }
 
@@ -30,13 +30,13 @@ public class TemporadaController {
     }
 
     @PutMapping("/{id}")
-    public void putTemporada(@RequestBody Temporada temporada, long id){
+    public void putTemporada(@RequestBody Temporada temporada, @PathVariable Long id){
         temporada.setId(id);
         temporadaRepositorio.save(temporada);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTemporada(long id){
+    public void deleteTemporada(@PathVariable Long id){
         temporadaRepositorio.deleteById(id);
     }
 }
