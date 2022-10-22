@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,6 +16,6 @@ public class Serie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private Date dataLancamento;
+    private LocalDate dataLancamento;
     private String descricao;
 }

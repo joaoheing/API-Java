@@ -13,9 +13,12 @@ public class Temporada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int numero;
-    @ManyToOne
-    private Serie Seriado;
     private String descricao;
+
+    @ManyToOne
+    private Serie Serie;
+    private String serieNome;
 }
 

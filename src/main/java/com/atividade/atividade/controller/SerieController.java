@@ -1,11 +1,13 @@
 package com.atividade.atividade.controller;
 
+import com.atividade.atividade.DTOs.SerieDTO;
 import com.atividade.atividade.model.Serie;
 import com.atividade.atividade.repositorio.SerieRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/serie")
@@ -14,13 +16,13 @@ public class SerieController {
     private SerieRepositorio serieRepositorio;
 
     @GetMapping("/")
-    public List<Serie> getAll(){
-        return serieRepositorio.findAll();
+    public List<SerieDTO> getAll(){
+        return serieRepositorio.findAll().stream().map(serie -> new SerieDTO(serie)).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public Serie getById( @PathVariable Long id){
-        return serieRepositorio.findById(id).get();
+    public SerieDTO getById( @PathVariable Long id){
+        return new SerieDTO(serieRepositorio.findById(id).get());
     }
 
     @PostMapping

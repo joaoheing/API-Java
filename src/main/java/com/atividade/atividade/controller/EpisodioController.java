@@ -1,11 +1,14 @@
 package com.atividade.atividade.controller;
 
+import com.atividade.atividade.DTOs.EpisodioDTO;
+import com.atividade.atividade.DTOs.TemporadaDTO;
 import com.atividade.atividade.model.Episodio;
 import com.atividade.atividade.repositorio.EpisodioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/episodio")
@@ -15,13 +18,13 @@ public class EpisodioController {
     private EpisodioRepositorio episodioRepositorio;
 
     @GetMapping("/")
-    public List<Episodio> getAll(){
-        return episodioRepositorio.findAll();
+    public List<EpisodioDTO> getAll(){
+        return episodioRepositorio.findAll().stream().map(episodio -> new EpisodioDTO(episodio)).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public Episodio getById(@PathVariable Long id){
-        return episodioRepositorio.findById(id).get();
+    public EpisodioDTO getById(@PathVariable Long id){
+        return new EpisodioDTO(episodioRepositorio.findById(id).get());
     }
 
     @PostMapping
